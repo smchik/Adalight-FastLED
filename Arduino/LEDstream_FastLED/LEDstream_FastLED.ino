@@ -37,7 +37,7 @@ const uint8_t
 const unsigned long
 	SerialSpeed    = 230400;   // serial port speed
 const uint16_t
-	SerialTimeout  = 5 * 60;   // time before LEDs are shut off if no data (in seconds), 0 to disable
+	SerialTimeout  = 60 * 60;  // time before LEDs are shut off if no data (in seconds), 0 to disable
 
 // --- Optional Settings (uncomment to add)
 #define SERIAL_FLUSH          // Serial buffer cleared on LED latch
