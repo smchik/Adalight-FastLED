@@ -8,7 +8,7 @@
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -22,22 +22,22 @@
 #include <Arduino.h>
 
 // --- General Settings
-const uint16_t 
-	Num_Leds   =  80;         // strip length
+const uint16_t
+	Num_Leds   =  116;        // strip length = top(38) + bottom(38) + left(20) + right(20)
 const uint8_t
 	Brightness =  255;        // maximum brightness
 
 // --- FastLED Setings
 #define LED_TYPE     WS2812B  // led strip type for FastLED
 #define COLOR_ORDER  GRB      // color order for bitbang
-#define PIN_DATA     6        // led data output pin
+#define PIN_DATA     D0       // led data output pin
 // #define PIN_CLOCK  7       // led data clock pin (uncomment if you're using a 4-wire LED type)
 
 // --- Serial Settings
 const unsigned long
-	SerialSpeed    = 115200;  // serial port speed
+	SerialSpeed    = 230400;   // serial port speed
 const uint16_t
-	SerialTimeout  = 60;      // time before LEDs are shut off if no data (in seconds), 0 to disable
+	SerialTimeout  = 5 * 60;   // time before LEDs are shut off if no data (in seconds), 0 to disable
 
 // --- Optional Settings (uncomment to add)
 #define SERIAL_FLUSH          // Serial buffer cleared on LED latch
@@ -128,7 +128,7 @@ void setup(){
 	#else
 		#error "No LED output pins defined. Check your settings at the top."
 	#endif
-	
+
 	FastLED.setBrightness(Brightness);
 
 	#ifdef CLEAR_ON_START
@@ -141,7 +141,7 @@ void setup(){
 	lastByteTime = lastAckTime = millis(); // Set initial counters
 }
 
-void loop(){ 
+void loop(){
 	t = millis(); // Save current time
 
 	// If there is new serial data
@@ -207,7 +207,7 @@ void dataMode(){
 		ledsRaw[outPos++] = c; // Issue next byte
 	}
 	bytesRemaining--;
- 
+
 	if(bytesRemaining == 0) {
 		// End of data -- issue latch:
 		mode = Header; // Begin next header search
