@@ -41,7 +41,7 @@ const uint16_t
 
 // --- Optional Settings (uncomment to add)
 #define SERIAL_FLUSH          // Serial buffer cleared on LED latch
-// #define CLEAR_ON_START     // LEDs are cleared on reset
+#define CLEAR_ON_START     // LEDs are cleared on reset
 
 // --- Debug Settings (uncomment to add)
 // #define DEBUG_LED 13       // toggles the Arduino's built-in LED on header match
